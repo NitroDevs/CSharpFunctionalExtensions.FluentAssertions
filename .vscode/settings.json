@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    },
+
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/bin": true,
+        "**/obj": true
+    },
+
+    "omnisharp.defaultLaunchSolution": "CSharpFunctionalExtensions.FluentAssertions.sln",
+    "omnisharp.useEditorFormattingSettings": true,
+    "omnisharp.enableImportCompletion": true
+}
