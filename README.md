@@ -6,4 +6,4 @@ A small set of extensions to make test assertions more fluent when using CSharpF
 
 ## Dependencies
 
-This library is compatible with .NET 5+.
+This library is compatible with .NET 6+.

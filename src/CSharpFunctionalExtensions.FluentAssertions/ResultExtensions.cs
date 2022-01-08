@@ -21,7 +21,33 @@ namespace CSharpFunctionalExtensions.FluentAssertions
                 .BecauseOf(because, becauseArgs)
                 .Given(() => Subject.IsSuccess)
                 .ForCondition(isSuccess => isSuccess)
-                .FailWith("Expected Result to be successful but found error {Subject.Error}", Subject.Error);
+                .FailWith("Expected Result to be successful but found error");
+
+            return new AndConstraint<ResultAssertions<T>>(this);
+        }
+
+        public AndConstraint<ResultAssertions<T>> BeSuccessfulWith(T value, string because = "", params object[] becauseArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(because, becauseArgs)
+                .Given(() => Subject)
+                .ForCondition(isSuccess => Subject.IsSuccess)
+                .FailWith("Expected Result to be successful but found error")
+                .Then
+                .Given(s => s.Value)
+                .ForCondition(v => v.Equals(value))
+                .FailWith("Excepted Result value to be {0} but found {1}", value, Subject.Value);
+
+            return new AndConstraint<ResultAssertions<T>>(this);
+        }
+
+        public AndConstraint<ResultAssertions<T>> BeFailure(string because = "", params object[] becauseArgs)
+        {
+            Execute.Assertion
+                .BecauseOf(because, becauseArgs)
+                .Given(() => Subject.IsFailure)
+                .ForCondition(isSuccess => isSuccess)
+                .FailWith("Expected Result to be failure");
 
             return new AndConstraint<ResultAssertions<T>>(this);
         }
