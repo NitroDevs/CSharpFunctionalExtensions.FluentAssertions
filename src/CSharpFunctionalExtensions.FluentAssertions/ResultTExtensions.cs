@@ -4,7 +4,7 @@ using FluentAssertions.Primitives;
 
 namespace CSharpFunctionalExtensions.FluentAssertions;
 
-public static class ResultExtensions
+public static class ResultTExtensions
 {
     public static ResultAssertions<T> Should<T>(this Result<T> instance) => new(instance);
 }
