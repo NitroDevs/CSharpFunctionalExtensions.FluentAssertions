@@ -7,12 +7,19 @@
 		<Copyright>Copyright © $(Company) $([System.DateTime]::Now.Year)</Copyright>
 		<Trademark>$(Company)™</Trademark>
 		<VersionPrefix>1.0.0</VersionPrefix>
+		<Product>XperienceCommunity.AppSettingsJsonRegistration</Product>
+		<Title>$(Product)</Title>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/NitroDevs/CSharpFunctionalExtensions.FluentAssertions</PackageProjectUrl>
-		<PackageIcon>nitro-logo.png</PackageIcon>
+		<PackageIcon>nitro-devs-logo.png</PackageIcon>
 		<PackageTags>Monad;FluentAssertions;CSharpFunctionalExtensions;Testing</PackageTags>
 		<PackageReleaseNotes>https://github.com/NitroDevs/CSharpFunctionalExtensions.FluentAssertions/releases</PackageReleaseNotes>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildStartupDirectory)\images\nitro-devs-logo.png" Pack="true" Visible="false" PackagePath="" />
+		<None Include="$(MSBuildStartupDirectory)\README.md" Pack="true" PackagePath=""/>
+	</ItemGroup>
 
 	<PropertyGroup>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -20,14 +27,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\..\images\nitro-logo.png" Pack="true" Visible="false" PackagePath="" />
-	</ItemGroup>
 
 </Project>

@@ -1,25 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Description>
+			This package provides a set of extensions to FluentAssertions to simplify the testing of project using CSharpFunctionalExtensions
+		</Description>
 
-    <Description>
-      This package provides a set of extensions to FluentAssertions to simplify the testing of project using CSharpFunctionalExtensions
-    </Description>
+		<Product>CSharpFunctionalExtensions.FluentAssertions</Product>
+		<Title>$(Product)</Title>
+		<PackageTags>$(PackageTags)</PackageTags>
+	</PropertyGroup>
 
-    <Product>CSharpFunctionalExtensions.FluentAssertions</Product>
-    <Title>$(Product)</Title>
-    <PackageTags>$(PackageTags)</PackageTags>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.0" />
-    <PackageReference Include="FluentAssertions" Version="6.6.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+	<ItemGroup>
+		<PackageReference Include="CSharpFunctionalExtensions" Version="2.29.0" />
+		<PackageReference Include="FluentAssertions" Version="6.6.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-  </ItemGroup>
+	</ItemGroup>
 
 </Project>
