@@ -18,8 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
     
-      - name: Set Environment Variables
-        uses: ./.github/actions/set-env
+      #- name: Set Environment Variables
+      #  uses: ./.github/actions/set-env
 
       - uses: actions/checkout@v2
 
