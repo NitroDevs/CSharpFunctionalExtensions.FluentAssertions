@@ -6,16 +6,22 @@ namespace CSharpFunctionalExtensions.FluentAssertions;
 
 public static class ResultTExtensions
 {
-    public static ResultAssertions<T> Should<T>(this Result<T> instance) => new(instance);
+    public static ResultTAssertions<T> Should<T>(this Result<T> instance) => new(instance);
 }
 
-public class ResultAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultAssertions<T>>
+public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAssertions<T>>
 {
-    public ResultAssertions(Result<T> instance) : base(instance) { }
+    public ResultTAssertions(Result<T> instance) : base(instance) { }
 
     protected override string Identifier => "Result{T}";
 
-    public AndConstraint<ResultAssertions<T>> BeSuccessful(string because = "", params object[] becauseArgs)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
+    public AndConstraint<ResultTAssertions<T>> BeSuccessful(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
@@ -23,10 +29,17 @@ public class ResultAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultAsse
             .ForCondition(isSuccess => isSuccess)
             .FailWith("Expected Result to be successful but found error");
 
-        return new AndConstraint<ResultAssertions<T>>(this);
+        return new AndConstraint<ResultTAssertions<T>>(this);
     }
 
-    public AndConstraint<ResultAssertions<T>> BeSuccessfulWith(T value, string because = "", params object[] becauseArgs)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
+    public AndConstraint<ResultTAssertions<T>> BeSuccessfulWith(T value, string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
@@ -38,17 +51,23 @@ public class ResultAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultAsse
             .ForCondition(v => v.Equals(value))
             .FailWith("Excepted Result value to be {0} but found {1}", value, Subject.Value);
 
-        return new AndConstraint<ResultAssertions<T>>(this);
+        return new AndConstraint<ResultTAssertions<T>>(this);
     }
 
-    public AndConstraint<ResultAssertions<T>> BeFailure(string because = "", params object[] becauseArgs)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
+    public AndConstraint<ResultTAssertions<T>> BeFailure(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject.IsFailure)
             .ForCondition(isSuccess => isSuccess)
-            .FailWith("Expected Result to be failure");
+            .FailWith("Expected Result to be failure but found success");
 
-        return new AndConstraint<ResultAssertions<T>>(this);
+        return new AndConstraint<ResultTAssertions<T>>(this);
     }
 }
