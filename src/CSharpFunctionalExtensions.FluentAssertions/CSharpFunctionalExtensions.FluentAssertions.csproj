@@ -13,11 +13,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="C:\Windows\README.md" />
-	  <None Remove="C:\Windows\system32\README.md" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CSharpFunctionalExtensions" Version="2.29.0" />
 		<PackageReference Include="FluentAssertions" Version="6.6.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
