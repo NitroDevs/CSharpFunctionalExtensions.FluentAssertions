@@ -15,6 +15,13 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
 
     protected override string Identifier => "Maybe{T}";
 
+    /// <summary>
+    /// Asserts that the current <see cref="Maybe{T}"/> has a value.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
     public AndConstraint<MaybeAssertions<T>> HaveValue(T value, string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
@@ -35,6 +42,12 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
         return new AndConstraint<MaybeAssertions<T>>(this);
     }
 
+    /// <summary>
+    /// Asserts that the current <see cref="Maybe{T}"/> has no value.
+    /// </summary>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
     public AndConstraint<MaybeAssertions<T>> HaveNoValue(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion

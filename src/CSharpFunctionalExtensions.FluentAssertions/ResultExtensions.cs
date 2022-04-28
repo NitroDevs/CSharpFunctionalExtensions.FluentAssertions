@@ -16,7 +16,7 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     protected override string Identifier => "Result";
 
     /// <summary>
-    /// 
+    /// Asserts a result is a success.
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
@@ -33,7 +33,7 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     }
 
     /// <summary>
-    /// 
+    /// Asserts a result is a failure.
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
