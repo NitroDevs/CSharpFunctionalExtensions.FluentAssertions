@@ -11,7 +11,7 @@ public class ResultAssertionsTests
     {
         var x = Result.Success("test");
 
-        x.Should().BeSuccessful();
+        x.Should().Succeed();
     }
 
     [Fact]
@@ -19,9 +19,9 @@ public class ResultAssertionsTests
     {
         var x = Result.Success("test");
 
-        var action = () => x.Should().BeFailure();
+        var action = () => x.Should().Fail();
 
-        action.Should().Throw<XunitException>().WithMessage("Expected Result to be failure but found success");
+        action.Should().Throw<XunitException>().WithMessage("Expected Result to be failure but it succeeded");
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public class ResultAssertionsTests
         string expected = "test";
         var x = Result.Success(expected);
 
-        x.Should().BeSuccessfulWith(expected);
+        x.Should().SucceedWith(expected);
     }
 
     [Fact]
@@ -38,7 +38,7 @@ public class ResultAssertionsTests
     {
         var x = Result.Success("foo");
 
-        var action = () => x.Should().BeSuccessfulWith("bar");
+        var action = () => x.Should().SucceedWith("bar");
 
         action.Should().Throw<XunitException>().WithMessage(@"Excepted Result value to be ""bar"" but found ""foo""");
     }
@@ -48,7 +48,7 @@ public class ResultAssertionsTests
     {
         var x = Result.Failure<string>("error");
 
-        x.Should().BeFailure();
+        x.Should().Fail();
     }
 
     [Fact]
@@ -56,8 +56,8 @@ public class ResultAssertionsTests
     {
         var x = Result.Failure<string>("error");
 
-        var action = () => x.Should().BeSuccessful();
+        var action = () => x.Should().Succeed();
 
-        action.Should().Throw<XunitException>().WithMessage("Expected Result to be successful but found error");
+        action.Should().Throw<XunitException>().WithMessage("Expected Result to be successful but it failed");
     }
 }

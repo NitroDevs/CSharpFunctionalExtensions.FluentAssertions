@@ -21,13 +21,13 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<ResultAssertions> BeSuccessful(string because = "", params object[] becauseArgs)
+    public AndConstraint<ResultAssertions> Succeed(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject.IsSuccess)
             .ForCondition(isSuccess => isSuccess)
-            .FailWith("Expected Result to be successful but found error");
+            .FailWith("Expected Result to be successful but it failed");
 
         return new AndConstraint<ResultAssertions>(this);
     }
@@ -38,13 +38,13 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<ResultAssertions> BeFailure(string because = "", params object[] becauseArgs)
+    public AndConstraint<ResultAssertions> Fail(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject.IsFailure)
             .ForCondition(isSuccess => isSuccess)
-            .FailWith("Expected Result to be failure but found success");
+            .FailWith("Expected Result to be failure but it succeeded");
 
         return new AndConstraint<ResultAssertions>(this);
     }

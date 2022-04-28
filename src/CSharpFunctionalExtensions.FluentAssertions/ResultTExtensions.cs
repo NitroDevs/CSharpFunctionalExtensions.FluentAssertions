@@ -21,13 +21,13 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<ResultTAssertions<T>> BeSuccessful(string because = "", params object[] becauseArgs)
+    public AndConstraint<ResultTAssertions<T>> Succeed(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject.IsSuccess)
             .ForCondition(isSuccess => isSuccess)
-            .FailWith("Expected Result to be successful but found error");
+            .FailWith("Expected Result to be successful but it failed");
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
@@ -39,13 +39,13 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<ResultTAssertions<T>> BeSuccessfulWith(T value, string because = "", params object[] becauseArgs)
+    public AndConstraint<ResultTAssertions<T>> SucceedWith(T value, string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject)
             .ForCondition(isSuccess => Subject.IsSuccess)
-            .FailWith("Expected Result to be successful but found error")
+            .FailWith("Expected Result to be successful but it failed")
             .Then
             .Given(s => s.Value)
             .ForCondition(v => v.Equals(value))
@@ -60,13 +60,13 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<ResultTAssertions<T>> BeFailure(string because = "", params object[] becauseArgs)
+    public AndConstraint<ResultTAssertions<T>> Fail(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject.IsFailure)
             .ForCondition(isSuccess => isSuccess)
-            .FailWith("Expected Result to be failure but found success");
+            .FailWith("Expected Result to be failure but it succeeded");
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
