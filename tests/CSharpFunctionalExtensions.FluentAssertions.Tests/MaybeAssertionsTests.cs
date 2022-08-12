@@ -7,7 +7,7 @@ namespace CSharpFunctionalExtensions.FluentAssertions.Tests;
 public class MaybeAssertionsTests
 {
     [Fact]
-    public void When_Maybe_Is_Expected_To_Have_Value_And_It_Does_Should_Not_Throw()
+    public void WhenMaybeIsExpectedToHaveValueAndItDoesShouldNotThrow()
     {
         var x = Maybe.From("test");
 
@@ -15,7 +15,7 @@ public class MaybeAssertionsTests
     }
 
     [Fact]
-    public void When_Maybe_Is_Expected_To_Have_Value_And_It_Has_Wrong_Value_Should_Throw()
+    public void WhenMaybeIsExpectedToHaveValueAndItHasWrongValueShouldThrow()
     {
         var x = Maybe.From("oops");
 
@@ -25,7 +25,7 @@ public class MaybeAssertionsTests
     }
 
     [Fact]
-    public void When_Maybe_Is_Expected_To_Have_Value_And_It_Does_Not_Should_Throw()
+    public void WhenMaybeIsExpectedToHaveValueAndItDoesNotShouldThrow()
     {
         Maybe<string> x = null;
 
@@ -35,7 +35,7 @@ public class MaybeAssertionsTests
     }
 
     [Fact]
-    public void When_Maybe_Is_Expected_To_Have_No_Value_And_It_Has_None_Should_Not_Throw()
+    public void WhenMaybeIsExpectedToHaveNoValueAndItHasNoneShouldNotThrow()
     {
         Maybe<string> x = null;
 
@@ -43,7 +43,7 @@ public class MaybeAssertionsTests
     }
 
     [Fact]
-    public void When_Maybe_Is_Expected_To_Have_No_Value_And_It_Has_One_Should_Throw()
+    public void WhenMaybeIsExpectedToHaveNoValueAndItHasOneShouldThrow()
     {
         var x = Maybe.From("test");
 

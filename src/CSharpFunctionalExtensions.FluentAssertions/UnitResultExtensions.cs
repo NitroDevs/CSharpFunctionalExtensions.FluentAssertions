@@ -55,7 +55,7 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<UnitResultAssertions<E>> Fail(E error, string because = "", params object[] becauseArgs)
+    public AndConstraint<UnitResultAssertions<E>> FailWith(E error, string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
