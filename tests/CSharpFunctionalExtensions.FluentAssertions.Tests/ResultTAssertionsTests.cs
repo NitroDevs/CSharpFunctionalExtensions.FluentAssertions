@@ -7,7 +7,7 @@ namespace CSharpFunctionalExtensions.FluentAssertions.Tests;
 public class ResultAssertionsTests
 {
     [Fact]
-    public void When_Result_Is_Expected_To_Have_Value_It_Should_Be_Successful()
+    public void WhenResultIsExpectedToHaveValueItShouldBeSuccessful()
     {
         var x = Result.Success("test");
 
@@ -15,7 +15,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void When_Result_Is_Expected_To_Have_Value_It_Should_Not_Be_Failure()
+    public void WhenResultIsExpectedToHaveValueItShouldNotBeFailure()
     {
         var x = Result.Success("test");
 
@@ -25,7 +25,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void When_Result_Is_Expected_To_Have_Value_It_Should_Be_Successful_With_Value()
+    public void WhenResultIsExpectedToHaveValueItShouldBeSuccessfulWithValue()
     {
         string expected = "test";
         var x = Result.Success(expected);
@@ -34,7 +34,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void When_Result_Is_Expected_To_Have_Value_It_Should_Not_Be_Successful_With_Different_Value()
+    public void WhenResultIsExpectedToHaveValueItShouldNotBeSuccessfulWithDifferentValue()
     {
         var x = Result.Success("foo");
 
@@ -44,7 +44,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void When_Result_Is_Expected_To_Have_Error_It_Should_Not_Be_Failure()
+    public void WhenResultIsExpectedToHaveErrorItShouldNotBeFailure()
     {
         var x = Result.Failure<string>("error");
 
@@ -52,7 +52,7 @@ public class ResultAssertionsTests
     }
 
     [Fact]
-    public void When_Result_Is_Expected_To_Have_Error_It_Should_Be_Failure()
+    public void WhenResultIsExpectedToHaveErrorItShouldBeFailure()
     {
         var x = Result.Failure<string>("error");
 

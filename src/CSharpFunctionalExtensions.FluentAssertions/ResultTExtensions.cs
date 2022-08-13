@@ -25,15 +25,15 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject.IsSuccess)
-            .ForCondition(isSuccess => isSuccess)
+            .Given(() => Subject)
+            .ForCondition(s => s.IsSuccess)
             .FailWith("Expected Result to be successful but it failed");
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
 
     /// <summary>
-    /// Asserts a result is a failure.
+    /// Asserts a result is a success with a specified value.
     /// </summary>
     /// <param name="value"></param>
     /// <param name="because"></param>
@@ -44,7 +44,7 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject)
-            .ForCondition(isSuccess => Subject.IsSuccess)
+            .ForCondition(s => s.IsSuccess)
             .FailWith("Expected Result to be successful but it failed")
             .Then
             .Given(s => s.Value)
@@ -55,7 +55,7 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     }
 
     /// <summary>
-    /// 
+    /// Asserts a result is a failure
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
@@ -64,8 +64,8 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject.IsFailure)
-            .ForCondition(isSuccess => isSuccess)
+            .Given(() => Subject)
+            .ForCondition(s => s.IsFailure)
             .FailWith("Expected Result to be failure but it succeeded");
 
         return new AndConstraint<ResultTAssertions<T>>(this);
