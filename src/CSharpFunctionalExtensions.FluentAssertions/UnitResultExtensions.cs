@@ -64,7 +64,7 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
             .FailWith("Expected UnitResult to be failure but it succeeded")
             .Then
             .Given(s => s.Error)
-            .ForCondition(e => e.Equals(error))
+            .ForCondition(e => e!.Equals(error))
             .FailWith("Excepted UnitResult value to be {0} but found {1}", error, Subject.Error);
 
         return new AndConstraint<UnitResultAssertions<E>>(this);

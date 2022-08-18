@@ -47,7 +47,7 @@ public class ResultTEAssertions<T, E> : ReferenceTypeAssertions<Result<T, E>, Re
             .FailWith("Expected Result to be successful but it failed")
             .Then
             .Given(s => s.Value)
-            .ForCondition(v => v.Equals(value))
+            .ForCondition(v => v!.Equals(value))
             .FailWith("Excepted Result value to be {0} but found {1}", value, Subject.Value);
 
         return new AndConstraint<ResultTEAssertions<T, E>>(this);
@@ -86,7 +86,7 @@ public class ResultTEAssertions<T, E> : ReferenceTypeAssertions<Result<T, E>, Re
             .FailWith("Expected Result to be failure but it succeeded")
             .Then
             .Given(s => s.Error)
-            .ForCondition(e => e.Equals(error))
+            .ForCondition(e => e!.Equals(error))
             .FailWith("Excepted Result value to be {0} but found {1}", error, Subject.Error);
 
         return new AndConstraint<ResultTEAssertions<T, E>>(this);
