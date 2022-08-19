@@ -9,17 +9,17 @@ public class MaybeAssertionsTests
     [Fact]
     public void WhenMaybeIsExpectedToHaveValueAndItDoesShouldNotThrow()
     {
-        var x = Maybe.From("test");
+        var maybe = Maybe.From("test");
 
-        x.Should().HaveValue("test");
+        maybe.Should().HaveValue("test");
     }
 
     [Fact]
     public void WhenMaybeIsExpectedToHaveValueAndItHasWrongValueShouldThrow()
     {
-        var x = Maybe.From("oops");
+        var maybe = Maybe.From("oops");
 
-        Action act = () => x.Should().HaveValue("test", "it is test");
+        Action act = () => maybe.Should().HaveValue("test", "it is test");
 
         act.Should().Throw<Exception>().WithMessage($"*value \"test\" because it is test, but with value \"oops\" it*");
     }
@@ -27,9 +27,9 @@ public class MaybeAssertionsTests
     [Fact]
     public void WhenMaybeIsExpectedToHaveValueAndItDoesNotShouldThrow()
     {
-        Maybe<string> x = null;
+        Maybe<string> maybe = null;
 
-        Action act = () => x.Should().HaveValue("test", "it is not None");
+        Action act = () => maybe.Should().HaveValue("test", "it is not None");
 
         act.Should().Throw<Exception>().WithMessage($"*value \"test\" because it is not None*");
     }
@@ -37,17 +37,17 @@ public class MaybeAssertionsTests
     [Fact]
     public void WhenMaybeIsExpectedToHaveNoValueAndItHasNoneShouldNotThrow()
     {
-        Maybe<string> x = null;
+        Maybe<string> maybe = null;
 
-        x.Should().HaveNoValue();
+        maybe.Should().HaveNoValue();
     }
 
     [Fact]
     public void WhenMaybeIsExpectedToHaveNoValueAndItHasOneShouldThrow()
     {
-        var x = Maybe.From("test");
+        var maybe = Maybe.From("test");
 
-        Action act = () => x.Should().HaveNoValue("it is None");
+        Action act = () => maybe.Should().HaveNoValue("it is None");
 
         act.Should().Throw<Exception>().WithMessage($"*Maybe to have no value because it is None, but with value \"test\" it*");
     }

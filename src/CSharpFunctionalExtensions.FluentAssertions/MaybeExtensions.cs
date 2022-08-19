@@ -33,7 +33,7 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
                 _ => value)
             .Then
             .Given(s => s.Value)
-            .ForCondition(v => v.Equals(value))
+            .ForCondition(v => v!.Equals(value))
             .FailWith(
                 "Expected {context:maybe} to have value {0}{reason}, but with value {1} it",
                 _ => value,

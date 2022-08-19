@@ -48,7 +48,7 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
             .FailWith("Expected Result to be successful but it failed")
             .Then
             .Given(s => s.Value)
-            .ForCondition(v => v.Equals(value))
+            .ForCondition(v => v!.Equals(value))
             .FailWith("Excepted Result value to be {0} but found {1}", value, Subject.Value);
 
         return new AndConstraint<ResultTAssertions<T>>(this);

@@ -9,17 +9,17 @@ public class ResultAssertionTests
     [Fact]
     public void WhenResultIsExpectedToHaveValueItShouldBeSuccessful()
     {
-        var x = Result.Success();
+        var result = Result.Success();
 
-        x.Should().Succeed();
+        result.Should().Succeed();
     }
 
     [Fact]
     public void WhenResultIsExpectedToHaveValueItShouldNotBeFailure()
     {
-        var x = Result.Success();
+        var result = Result.Success();
 
-        var action = () => x.Should().Fail();
+        var action = () => result.Should().Fail();
 
         action.Should().Throw<XunitException>().WithMessage("Expected Result to be failure but it succeeded");
     }
@@ -27,17 +27,17 @@ public class ResultAssertionTests
     [Fact]
     public void WhenResultIsExpectedToHaveErrorItShouldNotBeFailure()
     {
-        var x = Result.Failure("error");
+        var result = Result.Failure("error");
 
-        x.Should().Fail();
+        result.Should().Fail();
     }
 
     [Fact]
     public void WhenResultIsExpectedToHaveErrorItShouldBeFailure()
     {
-        var x = Result.Failure("error");
+        var result = Result.Failure("error");
 
-        var action = () => x.Should().Succeed();
+        var action = () => result.Should().Succeed();
 
         action.Should().Throw<XunitException>().WithMessage("Expected Result to be successful but it failed");
     }
