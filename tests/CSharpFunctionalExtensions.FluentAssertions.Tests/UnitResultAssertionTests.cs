@@ -38,6 +38,15 @@ public class UnitResultAssertionTests
     }
 
     [Fact]
+    public void WhenResultIsExpectedToBeFailureWithValueItShouldBeFailureWithValue()
+    {
+        string error = "error";
+        var r = UnitResult.Failure(error);
+
+        r.Should().FailWith(error);
+    }
+
+    [Fact]
     public void WhenResultIsExpectedToBeFailureItShouldThrowWhenSuccess()
     {
         var r = UnitResult.Success<string>();
