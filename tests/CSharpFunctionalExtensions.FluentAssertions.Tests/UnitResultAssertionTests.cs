@@ -38,6 +38,26 @@ public class UnitResultAssertionTests
     }
 
     [Fact]
+    public void WhenResultIsExpectedToBeFailureWithValueItShouldBeFailureWithValue()
+    {
+        string error = "error";
+        var r = UnitResult.Failure(error);
+
+        r.Should().FailWith(error);
+    }
+
+    [Fact]
+    public void WhenResultIsExpectedToBeFailureWithValueItShouldThrowWhenFailureWithDifferenceValue()
+    {
+        string error = "error";
+        var r = UnitResult.Failure(error);
+
+        var action = () => r.Should().FailWith("some other error");
+
+        action.Should().Throw<XunitException>().WithMessage("Excepted UnitResult value to be \"some other error\" but found \"error\"");
+    }
+
+    [Fact]
     public void WhenResultIsExpectedToBeFailureItShouldThrowWhenSuccess()
     {
         var r = UnitResult.Success<string>();
