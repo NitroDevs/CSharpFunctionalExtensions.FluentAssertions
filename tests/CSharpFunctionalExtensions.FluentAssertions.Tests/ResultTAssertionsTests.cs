@@ -9,17 +9,17 @@ public class ResultAssertionsTests
     [Fact]
     public void WhenResultIsExpectedToHaveValueItShouldBeSuccessful()
     {
-        var x = Result.Success("test");
+        var result = Result.Success("test");
 
-        x.Should().Succeed();
+        result.Should().Succeed();
     }
 
     [Fact]
     public void WhenResultIsExpectedToHaveValueItShouldNotBeFailure()
     {
-        var x = Result.Success("test");
+        var result = Result.Success("test");
 
-        var action = () => x.Should().Fail();
+        var action = () => result.Should().Fail();
 
         action.Should().Throw<XunitException>().WithMessage("Expected Result to be failure but it succeeded");
     }
@@ -28,17 +28,17 @@ public class ResultAssertionsTests
     public void WhenResultIsExpectedToHaveValueItShouldBeSuccessfulWithValue()
     {
         string expected = "test";
-        var x = Result.Success(expected);
+        var result = Result.Success(expected);
 
-        x.Should().SucceedWith(expected);
+        result.Should().SucceedWith(expected);
     }
 
     [Fact]
     public void WhenResultIsExpectedToHaveValueItShouldNotBeSuccessfulWithDifferentValue()
     {
-        var x = Result.Success("foo");
+        var result = Result.Success("foo");
 
-        var action = () => x.Should().SucceedWith("bar");
+        var action = () => result.Should().SucceedWith("bar");
 
         action.Should().Throw<XunitException>().WithMessage(@"Excepted Result value to be ""bar"" but found ""foo""");
     }
@@ -46,17 +46,17 @@ public class ResultAssertionsTests
     [Fact]
     public void WhenResultIsExpectedToHaveErrorItShouldNotBeFailure()
     {
-        var x = Result.Failure<string>("error");
+        var result = Result.Failure<string>("error");
 
-        x.Should().Fail();
+        result.Should().Fail();
     }
 
     [Fact]
     public void WhenResultIsExpectedToHaveErrorItShouldBeFailure()
     {
-        var x = Result.Failure<string>("error");
+        var result = Result.Failure<string>("error");
 
-        var action = () => x.Should().Succeed();
+        var action = () => result.Should().Succeed();
 
         action.Should().Throw<XunitException>().WithMessage("Expected Result to be successful but it failed");
     }

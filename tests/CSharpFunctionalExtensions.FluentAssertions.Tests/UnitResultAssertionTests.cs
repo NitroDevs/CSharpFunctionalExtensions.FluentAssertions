@@ -8,8 +8,9 @@ public class UnitResultAssertionTests
     [Fact]
     public void WhenResultIsExpectedToBeSuccessItShouldBeSuccess()
     {
-        var r = UnitResult.Success<string>();
-        var action = () => r.Should().Succeed();
+        var result = UnitResult.Success<string>();
+
+        var action = () => result.Should().Succeed();
 
         action.Should().NotThrow();
     }
@@ -18,8 +19,9 @@ public class UnitResultAssertionTests
     public void WhenResultIsExpectedToBeSuccessItShouldThrowWhenFailure()
     {
         string error = "error";
-        var r = UnitResult.Failure(error);
-        var action = () => r.Should().Succeed();
+        var result = UnitResult.Failure(error);
+
+        var action = () => result.Should().Succeed();
 
         action.Should().Throw<XunitException>().WithMessage("Expected UnitResult to be successful but it failed");
     }
@@ -28,10 +30,10 @@ public class UnitResultAssertionTests
     public void WhenResultIsExpectedToBeFailureItShouldBeFailure()
     {
         string error = "error";
-        var r = UnitResult.Failure(error);
+        var result = UnitResult.Failure(error);
 
-        var action = () => r.Should().Fail();
-        var actionWithError = () => r.Should().FailWith(error);
+        var action = () => result.Should().Fail();
+        var actionWithError = () => result.Should().FailWith(error);
 
         action.Should().NotThrow();
         actionWithError.Should().NotThrow();
@@ -41,18 +43,18 @@ public class UnitResultAssertionTests
     public void WhenResultIsExpectedToBeFailureWithValueItShouldBeFailureWithValue()
     {
         string error = "error";
-        var r = UnitResult.Failure(error);
+        var result = UnitResult.Failure(error);
 
-        r.Should().FailWith(error);
+        result.Should().FailWith(error);
     }
 
     [Fact]
     public void WhenResultIsExpectedToBeFailureWithValueItShouldThrowWhenFailureWithDifferenceValue()
     {
         string error = "error";
-        var r = UnitResult.Failure(error);
+        var result = UnitResult.Failure(error);
 
-        var action = () => r.Should().FailWith("some other error");
+        var action = () => result.Should().FailWith("some other error");
 
         action.Should().Throw<XunitException>().WithMessage("Excepted UnitResult value to be \"some other error\" but found \"error\"");
     }
@@ -60,9 +62,9 @@ public class UnitResultAssertionTests
     [Fact]
     public void WhenResultIsExpectedToBeFailureItShouldThrowWhenSuccess()
     {
-        var r = UnitResult.Success<string>();
+        var result = UnitResult.Success<string>();
 
-        var action = () => r.Should().Fail();
+        var action = () => result.Should().Fail();
 
         action.Should().Throw<XunitException>().WithMessage("Expected UnitResult to be failure but it succeeded");
     }
