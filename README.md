@@ -65,7 +65,7 @@ result.Should().FailWith("some other error"); // throws
 result.Should().Succeed(); // throws
 ```
 
-### Generic Result of T:Value and E:Exception Assertions
+### Generic Result of T:Value and E:Error Assertions
 
 ```csharp
 var result = Result.Success<int, Exception>(420);
