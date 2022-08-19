@@ -61,6 +61,7 @@ public class UnitResultAssertionTests
     public void WhenResultIsExpectedToBeFailureItShouldThrowWhenSuccess()
     {
         var r = UnitResult.Success<string>();
+
         var action = () => r.Should().Fail();
 
         action.Should().Throw<XunitException>().WithMessage("Expected UnitResult to be failure but it succeeded");
