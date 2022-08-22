@@ -27,7 +27,7 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject)
             .ForCondition(v => v.HasValue)
-            .FailWith("Expected a value{reason}");
+            .FailWith("Expected a value {reason}");
 
         return new AndConstraint<MaybeAssertions<T>>(this);
     }
