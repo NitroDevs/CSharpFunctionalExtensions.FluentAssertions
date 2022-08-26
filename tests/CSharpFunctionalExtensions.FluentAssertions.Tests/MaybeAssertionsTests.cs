@@ -7,6 +7,14 @@ namespace CSharpFunctionalExtensions.FluentAssertions.Tests;
 public class MaybeAssertionsTests
 {
     [Fact]
+    public void WhenMaybeIsExpectedToHaveSomeValueAndItDoesShouldNotThrow()
+    {
+        var maybe = Maybe.From("test");
+
+        maybe.Should().HaveSomeValue();
+    }
+    
+    [Fact]
     public void WhenMaybeIsExpectedToHaveValueAndItDoesShouldNotThrow()
     {
         var maybe = Maybe.From("test");

@@ -15,6 +15,7 @@ This library is compatible with .NET 6+.
 ```csharp
 var maybe = Maybe.From("foo");
 
+maybe.Should().HaveSomeValue(); // passes
 maybe.Should().HaveValue("foo"); // passes
 maybe.Should().HaveValue("bar"); // throws
 maybe.Should().HaveNoValue(); // throws
