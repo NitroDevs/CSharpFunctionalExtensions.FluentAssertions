@@ -13,7 +13,7 @@ public class MaybeAssertionsTests
 
         maybe.Should().HaveSomeValue();
     }
-    
+
     [Fact]
     public void WhenMaybeIsExpectedToHaveValueAndItDoesShouldNotThrow()
     {
