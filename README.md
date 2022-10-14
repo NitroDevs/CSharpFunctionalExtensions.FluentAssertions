@@ -117,3 +117,9 @@ result.Should().Fail(); // passes
 result.Should().FailWith("error"); // passes
 result.Should().Succeed(); // throws
 ```
+
+# Related Projects
+
+* [CSharpFunctionalExtensions](https://github.com/vkhorikov/CSharpFunctionalExtensions)
+* [FluentAssertions.CSharpFunctionalExtensions](https://github.com/pedromtcosta/FluentAssertions.CSharpFunctionalExtensions)
+* [Typescript Functional Extensions](https://github.com/seangwright/typescript-functional-extensions)
