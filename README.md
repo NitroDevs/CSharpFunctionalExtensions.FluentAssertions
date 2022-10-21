@@ -6,7 +6,19 @@ A small set of extensions to make test assertions more fluent when using CSharpF
 
 ## Dependencies
 
-This library is compatible with .NET 6+.
+This library is compatible with .NET 6+. It requires the following minimum package versions:
+
+CSharpFunctionalExtensons >= 2.35.0
+
+FluentAssertions >= 6.7.0.
+
+## Installation
+
+This library is available on Nuget and can be installed with the .NET CLI using the following command:
+
+```bash
+dotnet add package CSharpFunctionalExtensions.FluentAssertions
+```
 
 ## Usage
 
@@ -106,8 +118,12 @@ result.Should().FailWith("error"); // passes
 result.Should().Succeed(); // throws
 ```
 
-# Related Projects
+## Related Projects
 
 * [CSharpFunctionalExtensions](https://github.com/vkhorikov/CSharpFunctionalExtensions)
 * [FluentAssertions.CSharpFunctionalExtensions](https://github.com/pedromtcosta/FluentAssertions.CSharpFunctionalExtensions)
 * [Typescript Functional Extensions](https://github.com/seangwright/typescript-functional-extensions)
+
+## Acknowledgements
+
+Special thanks to [Sean Wright](https://github.com/seangwright) for all his guidance and contributions over the design, development, and release of this project. His insights are invaluable! :smile: 
