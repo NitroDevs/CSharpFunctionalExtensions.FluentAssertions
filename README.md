@@ -8,7 +8,7 @@ A small set of extensions to make test assertions more fluent when using CSharpF
 
 This library is compatible with .NET 6+. It requires the following minimum package versions:
 
-CSharpFunctionalExtensons >= 2.34.0
+CSharpFunctionalExtensons >= 2.35.0
 
 FluentAssertions >= 6.7.0.
 
