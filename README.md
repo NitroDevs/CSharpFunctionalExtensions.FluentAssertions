@@ -6,7 +6,19 @@ A small set of extensions to make test assertions more fluent when using CSharpF
 
 ## Dependencies
 
-This library is compatible with .NET 6+.
+This library is compatible with .NET 6+. It requires the following minimum package versions:
+
+CSharpFunctionalExtensons >= 2.35.0
+
+FluentAssertions >= 6.7.0.
+
+## Installation
+
+This library is available on Nuget and can be installed with the .NET CLI using the following command:
+
+```bash
+dotnet add package CSharpFunctionalExtensions.FluentAssertions
+```
 
 ## Usage
 
