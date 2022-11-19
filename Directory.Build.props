@@ -6,7 +6,7 @@
 		<Authors>$(Company)</Authors>
 		<Copyright>Copyright © $(Company) $([System.DateTime]::Now.Year)</Copyright>
 		<Trademark>$(Company)™</Trademark>
-		<VersionPrefix>1.0.1</VersionPrefix>
+		<VersionPrefix>1.1.0</VersionPrefix>
 		<Product>XperienceCommunity.AppSettingsJsonRegistration</Product>
 		<Title>$(Product)</Title>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
