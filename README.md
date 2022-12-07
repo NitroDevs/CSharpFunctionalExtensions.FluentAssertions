@@ -4,6 +4,10 @@
 
 A small set of extensions to make test assertions more fluent when using CSharpFunctionalExtensions! Wow!
 
+## Learn More
+
+* [Announcing CSharpFunctionalExtensions.FluentAssertions](https://www.kylemcmaster.com/blog/announcing-csharpfunctionalextensions-fluentassertions)
+
 ## Dependencies
 
 This library is compatible with .NET 6+. It requires the following minimum package versions:
