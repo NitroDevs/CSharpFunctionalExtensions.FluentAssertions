@@ -25,9 +25,8 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed");
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to be successful{{reason}} but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<ResultAssertions>(this);
     }
@@ -42,9 +41,8 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected Result to be failure but it succeeded");
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason($"Expected {{context:result}} to be failure{{reason}} but it succeeded"));
 
         return new AndConstraint<ResultAssertions>(this);
     }

@@ -24,9 +24,8 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected UnitResult to be successful but it failed");
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to be successful{{reason}} but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<UnitResultAssertions<E>>(this);
     }
@@ -41,9 +40,8 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected UnitResult to be failure but it succeeded");
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason($"Expected {{context:result}} to be failure but it succeeded"));
 
         return new AndConstraint<UnitResultAssertions<E>>(this);
     }
@@ -59,11 +57,10 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected UnitResult to be failure but it succeeded")
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason($"Expected {{context:result}} to be failure but it succeeded"))
             .Then
-            .Given(s => s.Error)
+            .Given(() => Subject.Error)
             .ForCondition(e => e!.Equals(error))
             .FailWith("Excepted UnitResult value to be {0} but found {1}", error, Subject.Error);
 

@@ -25,9 +25,8 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed");
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to be successful{{reason}} but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
@@ -43,13 +42,12 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed")
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to be successful{{reason}} but it failed with error ""{Subject.Error}"""))
             .Then
-            .Given(s => s.Value)
+            .Given(() => Subject.Value)
             .ForCondition(v => v!.Equals(value))
-            .FailWith("Excepted Result value to be {0} but found {1}", value, Subject.Value);
+            .FailWith("Expected Result value to be {0} but found {1}", value, Subject.Value);
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
@@ -64,9 +62,8 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected Result to be failure but it succeeded");
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason($"Expected {{context:result}} to be failure but it succeeded"));
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
