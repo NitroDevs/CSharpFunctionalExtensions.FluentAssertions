@@ -26,7 +26,7 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsSuccess)
-            .FailWith(() => new FailReason(@$"Expected {{context:result}} to be successful{{reason}} but it failed with error ""{Subject.Error}"""));
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
@@ -43,11 +43,11 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsSuccess)
-            .FailWith(() => new FailReason(@$"Expected {{context:result}} to be successful{{reason}} but it failed with error ""{Subject.Error}"""))
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""))
             .Then
             .Given(() => Subject.Value)
             .ForCondition(v => v!.Equals(value))
-            .FailWith("Expected Result value to be {0} but found {1}", value, Subject.Value);
+            .FailWith($"Expected {{context:result}} value to be {{0}}, but found {{1}}", value, Subject.Value);
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
@@ -63,7 +63,7 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsFailure)
-            .FailWith(() => new FailReason($"Expected {{context:result}} to be failure but it succeeded"));
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to fail, but it succeeded with value ""{Subject.Value}"""));
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }

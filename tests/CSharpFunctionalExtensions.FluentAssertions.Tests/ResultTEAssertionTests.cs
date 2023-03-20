@@ -34,7 +34,7 @@ public class ResultTEAssertionTests
 
         var action = () => result.Should().Succeed();
 
-        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} to be successful but it failed with error ""System.Exception: error""");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} to succeed, but it failed with error ""System.Exception: error""");
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class ResultTEAssertionTests
 
         var action = () => result.Should().SucceedWith("some other value");
 
-        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} value to be ""some other value"" but found ""value""");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} value to be ""some other value"", but found ""value""");
     }
 
     [Fact]
@@ -78,7 +78,7 @@ public class ResultTEAssertionTests
 
         var action = () => result.Should().FailWith(new Exception("Some other error"));
 
-        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} value to be System.Exception with message ""Some other error"" but found System.Exception with message ""error""");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} error to be System.Exception with message ""Some other error"", but found System.Exception with message ""error""");
     }
 
     [Fact]
@@ -91,7 +91,7 @@ public class ResultTEAssertionTests
         var action = () => result.Should().Fail();
         var actionWith = () => result.Should().FailWith(someError);
 
-        action.Should().Throw<XunitException>().WithMessage("Expected result to be failure but it succeeded");
-        actionWith.Should().Throw<XunitException>().WithMessage("Expected result to be failure but it succeeded");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} to fail, but it succeeded with value ""{value}""");
+        actionWith.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} to fail, but it succeeded");
     }
 }

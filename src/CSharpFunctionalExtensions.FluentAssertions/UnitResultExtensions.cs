@@ -25,7 +25,7 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsSuccess)
-            .FailWith(() => new FailReason(@$"Expected {{context:result}} to be successful{{reason}} but it failed with error ""{Subject.Error}"""));
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<UnitResultAssertions<E>>(this);
     }
@@ -41,13 +41,13 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsFailure)
-            .FailWith(() => new FailReason($"Expected {{context:result}} to be failure but it succeeded"));
+            .FailWith(() => new FailReason($"Expected {{context:result}} to fail, but it succeeded"));
 
         return new AndConstraint<UnitResultAssertions<E>>(this);
     }
 
     /// <summary>
-    /// Asserts a unit result is a failure with a specfied error.
+    /// Asserts a unit result is a failure with a specified error.
     /// </summary>
     /// <param name="error"></param>
     /// <param name="because"></param>
@@ -58,11 +58,11 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsFailure)
-            .FailWith(() => new FailReason($"Expected {{context:result}} to be failure but it succeeded"))
+            .FailWith(() => new FailReason($"Expected {{context:result}} to fail, but it succeeded"))
             .Then
             .Given(() => Subject.Error)
             .ForCondition(e => e!.Equals(error))
-            .FailWith("Excepted UnitResult value to be {0} but found {1}", error, Subject.Error);
+            .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
 
         return new AndConstraint<UnitResultAssertions<E>>(this);
     }
