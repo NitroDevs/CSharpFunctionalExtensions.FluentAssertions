@@ -21,7 +21,7 @@ public class ResultAssertionTests
 
         var action = () => result.Should().Fail();
 
-        action.Should().Throw<XunitException>().WithMessage("Expected Result to be failure but it succeeded");
+        action.Should().Throw<XunitException>().WithMessage($"Expected {nameof(result)} to fail, but it succeeded");
     }
 
     [Fact]
@@ -39,6 +39,6 @@ public class ResultAssertionTests
 
         var action = () => result.Should().Succeed();
 
-        action.Should().Throw<XunitException>().WithMessage("Expected Result to be successful but it failed");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} to succeed, but it failed with error ""error""");
     }
 }

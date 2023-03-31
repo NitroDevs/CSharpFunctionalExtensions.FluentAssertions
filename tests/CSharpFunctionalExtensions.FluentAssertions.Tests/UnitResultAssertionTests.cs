@@ -23,7 +23,7 @@ public class UnitResultAssertionTests
 
         var action = () => result.Should().Succeed();
 
-        action.Should().Throw<XunitException>().WithMessage("Expected UnitResult to be successful but it failed");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} to succeed, but it failed with error ""{error}""");
     }
 
     [Fact]
@@ -56,7 +56,7 @@ public class UnitResultAssertionTests
 
         var action = () => result.Should().FailWith("some other error");
 
-        action.Should().Throw<XunitException>().WithMessage("Excepted UnitResult value to be \"some other error\" but found \"error\"");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} error to be ""some other error"", but found ""{error}""");
     }
 
     [Fact]
@@ -66,6 +66,6 @@ public class UnitResultAssertionTests
 
         var action = () => result.Should().Fail();
 
-        action.Should().Throw<XunitException>().WithMessage("Expected UnitResult to be failure but it succeeded");
+        action.Should().Throw<XunitException>().WithMessage($"Expected {nameof(result)} to fail, but it succeeded");
     }
 }
