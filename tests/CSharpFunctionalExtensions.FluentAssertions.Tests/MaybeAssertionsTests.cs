@@ -27,7 +27,7 @@ public class MaybeAssertionsTests
     {
         var maybe = Maybe.From("oops");
 
-        Action act = () => maybe.Should().HaveValue("test", "it is test");
+        var act = () => maybe.Should().HaveValue("test", "it is test");
 
         act.Should().Throw<Exception>().WithMessage($"*value \"test\" because it is test, but with value \"oops\" it*");
     }
@@ -37,7 +37,7 @@ public class MaybeAssertionsTests
     {
         Maybe<string> maybe = null;
 
-        Action act = () => maybe.Should().HaveValue("test", "it is not None");
+        var act = () => maybe.Should().HaveValue("test", "it is not None");
 
         act.Should().Throw<Exception>().WithMessage($"*value \"test\" because it is not None*");
     }
@@ -55,7 +55,7 @@ public class MaybeAssertionsTests
     {
         var maybe = Maybe.From("test");
 
-        Action act = () => maybe.Should().HaveNoValue("it is None");
+        var act = () => maybe.Should().HaveNoValue("it is None");
 
         act.Should().Throw<Exception>().WithMessage($"*Maybe to have no value because it is None, but with value \"test\" it*");
     }
