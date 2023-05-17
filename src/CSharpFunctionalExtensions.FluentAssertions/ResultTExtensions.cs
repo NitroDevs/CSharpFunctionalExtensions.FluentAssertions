@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
+﻿using CSharpFunctionalExtensions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 
-namespace CSharpFunctionalExtensions.FluentAssertions;
+namespace FluentAssertions;
 
 public static class ResultTExtensions
 {

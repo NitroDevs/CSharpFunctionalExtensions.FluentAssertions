@@ -1,8 +1,8 @@
-﻿using FluentAssertions.Execution;
+﻿using CSharpFunctionalExtensions;
+using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
-using FluentAssertions;
 
-namespace CSharpFunctionalExtensions.FluentAssertions;
+namespace FluentAssertions;
 public static class ResultTEExtensions
 {
     public static ResultTEAssertions<T, E> Should<T, E>(this Result<T, E> instance) => new(instance);
