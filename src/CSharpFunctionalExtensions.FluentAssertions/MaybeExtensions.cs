@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
+﻿using CSharpFunctionalExtensions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 
-namespace CSharpFunctionalExtensions.FluentAssertions;
+namespace FluentAssertions;
 
 public static class MaybeExtensions
 {
@@ -14,7 +14,7 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
     public MaybeAssertions(Maybe<T> instance) : base(instance) { }
 
     protected override string Identifier => "Maybe{T}";
-    
+
     /// <summary>
     /// Asserts that the current <see cref="Maybe{T}"/> has some value.
     /// </summary>
