@@ -67,4 +67,22 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
+
+    /// <summary>
+    /// Asserts a result is a failure with a specified error.
+    /// </summary>
+    /// <param name="error"></param>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
+    public AndConstraint<ResultTAssertions<T>> FailWith(string error, string because = "", params object[] becauseArgs)
+    {
+        Execute.Assertion
+            .BecauseOf(because, becauseArgs)
+            .Given(() => Subject.IsFailure)
+            .ForCondition(b => Subject.Error!.Equals(error))
+            .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
+
+        return new AndConstraint<ResultTAssertions<T>>(this);
+    }
 }
