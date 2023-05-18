@@ -25,15 +25,17 @@ public class ResultAssertionTests
     }
 
     [Fact]
-    public void WhenResultIsExpectedToHaveErrorItShouldNotBeFailure()
+    public void WhenResultIsExpectedToHaveErrorFailShouldNotThrow()
     {
-        var result = Result.Failure("error");
+        string error = "error";
+        var result = Result.Failure(error);
 
         result.Should().Fail();
+        result.Should().FailWith(error);
     }
 
     [Fact]
-    public void WhenResultIsExpectedToHaveErrorItShouldBeFailure()
+    public void WhenResultIsExpectedToHaveErrorSucceedShouldThrow()
     {
         var result = Result.Failure("error");
 

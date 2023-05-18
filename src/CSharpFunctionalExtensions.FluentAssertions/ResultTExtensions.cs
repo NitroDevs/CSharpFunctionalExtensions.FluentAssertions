@@ -53,7 +53,7 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     }
 
     /// <summary>
-    /// Asserts a result is a failure
+    /// Asserts a result is a failure.
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
@@ -64,6 +64,24 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsFailure)
             .FailWith(() => new FailReason(@$"Expected {{context:result}} to fail, but it succeeded with value ""{Subject.Value}"""));
+
+        return new AndConstraint<ResultTAssertions<T>>(this);
+    }
+
+    /// <summary>
+    /// Asserts a result is a failure with a specified error.
+    /// </summary>
+    /// <param name="error"></param>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
+    public AndConstraint<ResultTAssertions<T>> FailWith(string error, string because = "", params object[] becauseArgs)
+    {
+        Execute.Assertion
+            .BecauseOf(because, becauseArgs)
+            .Given(() => Subject.IsFailure)
+            .ForCondition(b => Subject.Error!.Equals(error))
+            .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }

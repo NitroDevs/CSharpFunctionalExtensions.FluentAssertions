@@ -15,7 +15,7 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     protected override string Identifier => "Result";
 
     /// <summary>
-    /// Asserts a unit result is a success.
+    /// Asserts a UnitResult is a success.
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
@@ -31,7 +31,7 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     }
 
     /// <summary>
-    /// Asserts a unit result is a failure.
+    /// Asserts a UnitResult is a failure.
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
@@ -47,7 +47,7 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     }
 
     /// <summary>
-    /// Asserts a unit result is a failure with a specified error.
+    /// Asserts a UnitResult is a failure with a specified error.
     /// </summary>
     /// <param name="error"></param>
     /// <param name="because"></param>
