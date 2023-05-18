@@ -53,7 +53,7 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     }
 
     /// <summary>
-    /// Asserts a result is a failure
+    /// Asserts a result is a failure.
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
