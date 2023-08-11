@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
+﻿using CSharpFunctionalExtensions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 
-namespace CSharpFunctionalExtensions.FluentAssertions;
+namespace FluentAssertions;
 
 public static class ResultExtensions
 {
@@ -25,9 +25,8 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed");
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<ResultAssertions>(this);
     }
@@ -42,9 +41,26 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected Result to be failure but it succeeded");
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason($"Expected {{context:result}} to fail{{reason}}, but it succeeded"));
+
+        return new AndConstraint<ResultAssertions>(this);
+    }
+
+    /// <summary>
+    /// Asserts a result is a failure with a specified error.
+    /// </summary>
+    /// <param name="error"></param>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
+    public AndConstraint<ResultAssertions> FailWith(string error, string because = "", params object[] becauseArgs)
+    {
+        Execute.Assertion
+            .BecauseOf(because, becauseArgs)
+            .Given(() => Subject.IsFailure)
+            .ForCondition(b => Subject.Error!.Equals(error))
+            .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
 
         return new AndConstraint<ResultAssertions>(this);
     }

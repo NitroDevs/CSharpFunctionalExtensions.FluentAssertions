@@ -1,8 +1,8 @@
-﻿using FluentAssertions.Execution;
+﻿using CSharpFunctionalExtensions;
+using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
-using FluentAssertions;
 
-namespace CSharpFunctionalExtensions.FluentAssertions;
+namespace FluentAssertions;
 public static class ResultTEExtensions
 {
     public static ResultTEAssertions<T, E> Should<T, E>(this Result<T, E> instance) => new(instance);
@@ -24,9 +24,8 @@ public class ResultTEAssertions<T, E> : ReferenceTypeAssertions<Result<T, E>, Re
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed");
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<ResultTEAssertions<T, E>>(this);
     }
@@ -42,13 +41,12 @@ public class ResultTEAssertions<T, E> : ReferenceTypeAssertions<Result<T, E>, Re
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed")
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""))
             .Then
-            .Given(s => s.Value)
+            .Given(() => Subject.Value)
             .ForCondition(v => v!.Equals(value))
-            .FailWith("Excepted Result value to be {0} but found {1}", value, Subject.Value);
+            .FailWith("Expected {context:result} value to be {0}, but found {1}", value, Subject.Value);
 
         return new AndConstraint<ResultTEAssertions<T, E>>(this);
     }
@@ -63,9 +61,8 @@ public class ResultTEAssertions<T, E> : ReferenceTypeAssertions<Result<T, E>, Re
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected Result to be failure but it succeeded");
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to fail, but it succeeded with value ""{Subject.Value}"""));
 
         return new AndConstraint<ResultTEAssertions<T, E>>(this);
     }
@@ -81,13 +78,12 @@ public class ResultTEAssertions<T, E> : ReferenceTypeAssertions<Result<T, E>, Re
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected Result to be failure but it succeeded")
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason($"Expected {{context:result}} to fail, but it succeeded"))
             .Then
-            .Given(s => s.Error)
+            .Given(() => Subject.Error)
             .ForCondition(e => e!.Equals(error))
-            .FailWith("Excepted Result value to be {0} but found {1}", error, Subject.Error);
+            .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
 
         return new AndConstraint<ResultTEAssertions<T, E>>(this);
     }

@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
+﻿using CSharpFunctionalExtensions;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 
-namespace CSharpFunctionalExtensions.FluentAssertions;
+namespace FluentAssertions;
 
 public static class ResultTExtensions
 {
@@ -25,9 +25,8 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed");
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""));
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
@@ -43,19 +42,18 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsSuccess)
-            .FailWith("Expected Result to be successful but it failed")
+            .ForCondition(Subject.IsSuccess)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to succeed{{reason}}, but it failed with error ""{Subject.Error}"""))
             .Then
-            .Given(s => s.Value)
+            .Given(() => Subject.Value)
             .ForCondition(v => v!.Equals(value))
-            .FailWith("Excepted Result value to be {0} but found {1}", value, Subject.Value);
+            .FailWith($"Expected {{context:result}} value to be {{0}}, but found {{1}}", value, Subject.Value);
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
 
     /// <summary>
-    /// Asserts a result is a failure
+    /// Asserts a result is a failure.
     /// </summary>
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
@@ -64,9 +62,26 @@ public class ResultTAssertions<T> : ReferenceTypeAssertions<Result<T>, ResultTAs
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
-            .Given(() => Subject)
-            .ForCondition(s => s.IsFailure)
-            .FailWith("Expected Result to be failure but it succeeded");
+            .ForCondition(Subject.IsFailure)
+            .FailWith(() => new FailReason(@$"Expected {{context:result}} to fail, but it succeeded with value ""{Subject.Value}"""));
+
+        return new AndConstraint<ResultTAssertions<T>>(this);
+    }
+
+    /// <summary>
+    /// Asserts a result is a failure with a specified error.
+    /// </summary>
+    /// <param name="error"></param>
+    /// <param name="because"></param>
+    /// <param name="becauseArgs"></param>
+    /// <returns></returns>
+    public AndConstraint<ResultTAssertions<T>> FailWith(string error, string because = "", params object[] becauseArgs)
+    {
+        Execute.Assertion
+            .BecauseOf(because, becauseArgs)
+            .Given(() => Subject.IsFailure)
+            .ForCondition(b => Subject.Error!.Equals(error))
+            .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
 
         return new AndConstraint<ResultTAssertions<T>>(this);
     }
