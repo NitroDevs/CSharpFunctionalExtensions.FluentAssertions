@@ -4,6 +4,16 @@
 
 A small set of extensions to make test assertions more fluent when using CSharpFunctionalExtensions! Wow!
 
+## Star History
+
+<a href="https://star-history.com/#NitroDevs/CSharpFunctionalExtensions.FluentAssertions&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=NitroDevs/CSharpFunctionalExtensions.FluentAssertions&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=NitroDevs/CSharpFunctionalExtensions.FluentAssertions&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=NitroDevs/CSharpFunctionalExtensions.FluentAssertions&type=Date" />
+  </picture>
+</a>
+
 ## Learn More
 
 * [Announcing CSharpFunctionalExtensions.FluentAssertions](https://www.kylemcmaster.com/blog/announcing-csharpfunctionalextensions-fluentassertions)
