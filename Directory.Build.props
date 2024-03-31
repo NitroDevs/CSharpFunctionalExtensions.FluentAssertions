@@ -18,8 +18,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="$(MSBuildStartupDirectory)\images\nitro-devs-logo.png" Pack="true" Visible="false" PackagePath="" />
-		<None Include="$(MSBuildStartupDirectory)\README.md" Pack="true" PackagePath=""/>
+		<None Include="$(MSBuildThisFileDirectory)images\nitro-devs-logo.png" Pack="true" Visible="false" PackagePath="" />
+		<None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath=""/>
 	</ItemGroup>
 
 	<PropertyGroup>

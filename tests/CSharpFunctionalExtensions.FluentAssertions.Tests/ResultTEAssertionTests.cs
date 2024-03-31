@@ -15,6 +15,7 @@ public class ResultTEAssertionTests
         var action = () => result.Should().Succeed();
 
         action.Should().NotThrow();
+        result.Should().Succeed().Which.Should().Be(value);
     }
 
     [Fact]
@@ -24,6 +25,7 @@ public class ResultTEAssertionTests
         var result = Result.Success<string, Exception>(value);
 
         result.Should().SucceedWith(value);
+        result.Should().SucceedWith(value).Which.Should().Be(value);
     }
 
     [Fact]
@@ -59,6 +61,8 @@ public class ResultTEAssertionTests
 
         action.Should().NotThrow();
         actionWith.Should().NotThrow();
+        result.Should().Fail().Which.Should().Be(error);
+        result.Should().FailWith(error).Which.Should().Be(error);
     }
 
     [Fact]

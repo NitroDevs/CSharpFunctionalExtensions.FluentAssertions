@@ -21,7 +21,7 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<MaybeAssertions<T>> HaveSomeValue(string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<MaybeAssertions<T>, T> HaveSomeValue(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
@@ -29,7 +29,7 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
             .ForCondition(v => v.HasValue)
             .FailWith("Expected a value {reason}");
 
-        return new AndConstraint<MaybeAssertions<T>>(this);
+        return new AndWhichConstraint<MaybeAssertions<T>, T>(this, Subject.Value);
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<MaybeAssertions<T>> HaveValue(T value, string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<MaybeAssertions<T>, T> HaveValue(T value, string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
@@ -56,7 +56,7 @@ public class MaybeAssertions<T> : ReferenceTypeAssertions<Maybe<T>, MaybeAsserti
                 _ => value,
                 v => v);
 
-        return new AndConstraint<MaybeAssertions<T>>(this);
+        return new AndWhichConstraint<MaybeAssertions<T>, T>(this, Subject.Value);
     }
 
     /// <summary>

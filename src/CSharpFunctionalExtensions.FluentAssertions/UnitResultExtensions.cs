@@ -36,14 +36,14 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<UnitResultAssertions<E>> Fail(string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<UnitResultAssertions<E>, E> Fail(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsFailure)
             .FailWith(() => new FailReason($"Expected {{context:result}} to fail, but it succeeded"));
 
-        return new AndConstraint<UnitResultAssertions<E>>(this);
+        return new AndWhichConstraint<UnitResultAssertions<E>, E>(this, Subject.Error);
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<UnitResultAssertions<E>> FailWith(E error, string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<UnitResultAssertions<E>, E> FailWith(E error, string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
@@ -64,6 +64,6 @@ public class UnitResultAssertions<E> : ReferenceTypeAssertions<UnitResult<E>, Un
             .ForCondition(e => e!.Equals(error))
             .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
 
-        return new AndConstraint<UnitResultAssertions<E>>(this);
+        return new AndWhichConstraint<UnitResultAssertions<E>, E>(this, Subject.Error);
     }
 }

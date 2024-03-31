@@ -10,6 +10,7 @@
 		<Product>CSharpFunctionalExtensions.FluentAssertions</Product>
 		<Title>$(Product)</Title>
 		<PackageTags>$(PackageTags)</PackageTags>
+		<RootNamespace>FluentAssertions</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
