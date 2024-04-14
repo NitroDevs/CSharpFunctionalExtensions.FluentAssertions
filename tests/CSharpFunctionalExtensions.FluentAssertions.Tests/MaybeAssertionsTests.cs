@@ -12,6 +12,7 @@ public class MaybeAssertionsTests
         var maybe = Maybe.From("test");
 
         maybe.Should().HaveSomeValue();
+        maybe.Should().HaveSomeValue().Which.Should().Be("test");
     }
 
     [Fact]
@@ -20,6 +21,7 @@ public class MaybeAssertionsTests
         var maybe = Maybe.From("test");
 
         maybe.Should().HaveValue("test");
+        maybe.Should().HaveValue("test").Which.Should().HaveLength(4);
     }
 
     [Fact]

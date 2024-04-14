@@ -32,6 +32,9 @@ public class ResultAssertionTests
 
         result.Should().Fail();
         result.Should().FailWith(error);
+
+        result.Should().Fail().Which.Should().Be(error);
+        result.Should().FailWith(error).Which.Should().Be(error);
     }
 
     [Fact]
