@@ -37,6 +37,8 @@ public class UnitResultAssertionTests
 
         action.Should().NotThrow();
         actionWithError.Should().NotThrow();
+        result.Should().Fail().Which.Should().Be(error);
+        result.Should().FailWith(error).Which.Should().HaveLength(5);
     }
 
     [Fact]

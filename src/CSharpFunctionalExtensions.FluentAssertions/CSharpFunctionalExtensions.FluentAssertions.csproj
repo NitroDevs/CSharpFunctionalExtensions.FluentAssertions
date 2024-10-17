@@ -11,10 +11,11 @@
 		<Product>CSharpFunctionalExtensions.FluentAssertions</Product>
 		<Title>$(Product)</Title>
 		<PackageTags>$(PackageTags)</PackageTags>
+		<RootNamespace>FluentAssertions</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CSharpFunctionalExtensions" Version="2.37.0" />
+		<PackageReference Include="CSharpFunctionalExtensions" Version="3.0.0" />
 		<PackageReference Include="FluentAssertions" Version="6.10.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
 			<PrivateAssets>all</PrivateAssets>
