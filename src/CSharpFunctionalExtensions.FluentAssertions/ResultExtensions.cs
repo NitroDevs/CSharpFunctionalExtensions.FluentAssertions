@@ -37,14 +37,14 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<ResultAssertions> Fail(string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<ResultAssertions, string> Fail(string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
             .ForCondition(Subject.IsFailure)
             .FailWith(() => new FailReason($"Expected {{context:result}} to fail{{reason}}, but it succeeded"));
 
-        return new AndConstraint<ResultAssertions>(this);
+        return new AndWhichConstraint<ResultAssertions, string>(this, Subject.Error);
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
     /// <param name="because"></param>
     /// <param name="becauseArgs"></param>
     /// <returns></returns>
-    public AndConstraint<ResultAssertions> FailWith(string error, string because = "", params object[] becauseArgs)
+    public AndWhichConstraint<ResultAssertions, string> FailWith(string error, string because = "", params object[] becauseArgs)
     {
         Execute.Assertion
             .BecauseOf(because, becauseArgs)
@@ -62,6 +62,6 @@ public class ResultAssertions : ReferenceTypeAssertions<Result, ResultAssertions
             .ForCondition(b => Subject.Error!.Equals(error))
             .FailWith($"Expected {{context:result}} error to be {{0}}, but found {{1}}", error, Subject.Error);
 
-        return new AndConstraint<ResultAssertions>(this);
+        return new AndWhichConstraint<ResultAssertions, string>(this, Subject.Error);
     }
 }

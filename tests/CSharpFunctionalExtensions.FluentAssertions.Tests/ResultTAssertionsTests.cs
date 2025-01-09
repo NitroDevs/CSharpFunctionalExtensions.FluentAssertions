@@ -12,6 +12,7 @@ public class ResultAssertionsTests
         var result = Result.Success("test");
 
         result.Should().Succeed();
+        result.Should().Succeed().Which.Should().Be("test");
     }
 
     [Fact]
@@ -31,6 +32,7 @@ public class ResultAssertionsTests
         var result = Result.Success(expected);
 
         result.Should().SucceedWith(expected);
+        result.Should().SucceedWith(expected).Which.Should().HaveLength(4);
     }
 
     [Fact]
@@ -51,6 +53,8 @@ public class ResultAssertionsTests
 
         result.Should().Fail();
         result.Should().FailWith(error);
+        result.Should().Fail().Which.Should().Be(error);
+        result.Should().FailWith(error).Which.Should().HaveLength(5);
     }
 
     [Fact]
