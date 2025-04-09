@@ -82,7 +82,7 @@ public class ResultTEAssertionTests
 
         var action = () => result.Should().FailWith(new Exception("Some other error"));
 
-        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} error to be System.Exception with message ""Some other error"", but found System.Exception with message ""error""");
+        action.Should().Throw<XunitException>().WithMessage(@$"Expected {nameof(result)} error to be System.Exception: Some other error, but found System.Exception: error");
     }
 
     [Fact]

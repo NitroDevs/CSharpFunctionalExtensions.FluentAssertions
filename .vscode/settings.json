@@ -14,8 +14,7 @@
         "**/bin": true,
         "**/obj": true
     },
-
-    "omnisharp.defaultLaunchSolution": "CSharpFunctionalExtensions.FluentAssertions.sln",
     "omnisharp.useEditorFormattingSettings": true,
-    "omnisharp.enableImportCompletion": true
+    "dotnet.defaultSolution": "CSharpFunctionalExtensions.FluentAssertions.sln",
+    "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true
 }
