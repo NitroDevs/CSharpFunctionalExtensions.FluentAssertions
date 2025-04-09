@@ -38,7 +38,7 @@ jobs:
         run: dotnet pack ${{ env.PROJECT_PATH }} -c Release --no-build --include-symbols -o ./artifacts/prerelease --version-suffix prerelease-$GITHUB_RUN_NUMBER-$GITHUB_RUN_ATTEMPT
 
       - name: 'Save prerelease artifact'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: prerelease
           path: ./artifacts/prerelease/*
@@ -47,7 +47,7 @@ jobs:
         run: dotnet pack ${{ env.PROJECT_PATH }} -c Release --no-build --include-symbols -o ./artifacts/release
 
       - name: 'Save release artifact'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release
           path: ./artifacts/release/*
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: prerelease
           
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: release
           
