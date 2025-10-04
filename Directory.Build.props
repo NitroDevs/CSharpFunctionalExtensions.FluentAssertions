@@ -6,7 +6,7 @@
 		<Authors>$(Company)</Authors>
 		<Copyright>Copyright © $(Company) $([System.DateTime]::Now.Year)</Copyright>
 		<Trademark>$(Company)™</Trademark>
-		<VersionPrefix>3.0.0</VersionPrefix>
+		<VersionPrefix>3.6.0</VersionPrefix>
 		<Product>CSharpFunctionalExtensions.FluentAssertions</Product>
 		<Title>$(Product)</Title>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
